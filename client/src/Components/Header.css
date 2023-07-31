@@ -1,0 +1,61 @@
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #8D8279;
+    color: white;
+    gap: 50px;
+}
+
+.headerCatalogo {
+    color: white;
+    font-size: 50px;
+    text-align: center;
+}
+
+.headerIncantoGroup {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.headerIncanto {
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+}
+
+.headerGroup {
+    text-align: right;
+    justify-content: right;
+    letter-spacing: 3px;
+    color: white;
+}
+
+.headerSocialsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.headerSocials {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 10px;
+}
+
+.headerInstagram {
+    align-self: flex-end;
+}
+
+.headerWhatsapp {
+    display: flex;
+    gap: 10px;
+    align-self: center;
+    margin-bottom: 20px;
+}

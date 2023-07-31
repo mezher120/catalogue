@@ -1,0 +1,110 @@
+.cardContainer {
+    border-top: 7px solid #8D8279;     /* 3px red top border */
+    border-right: 1px solid #8D8279; /* 5px blue dashed right border */
+    border-bottom: 7px solid #8D8279; /* 2px green dotted bottom border */
+    border-left: 1px solid #8D8279; /* 1px orange left border */
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 350px;
+    position: relative;
+
+}
+
+.cardContainer:hover {
+    background-color: rgba(227, 227, 227, 0.108);
+    opacity: 0.5;
+
+}
+
+.cardNewOne {
+    position: absolute;
+    top: 30px;
+    right: 5px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: yellow;
+    border: 1px solid red;
+    padding: 5px;
+    text-align: center;
+}
+
+.cardTitle {
+    color: #8D8279;
+    border-bottom: solid 3px;
+    border-color: #8D8279;
+    padding-bottom: 5px;
+}
+
+.cardTitle span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cardImage {
+    display: flex;
+    justify-content: center;
+}
+
+.cardSubtitle {
+    color: rgb(255, 203, 61);
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.cardBorder {
+    border-bottom: solid 3px;
+    border-color: #8D8279;
+    margin-right: 10px;
+}
+
+.cardDescPriceContainer {
+    display: flex;
+}
+
+.cardDescriptionContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+}
+
+.cardDescription {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.cardDescription span {
+    font-size: large;
+    color: #8D8279;
+}
+
+.cardPriceContainer {
+    display: flex;
+    align-self: flex-end;
+    flex-direction: column;
+    padding-left: 10px;
+    flex: 1;
+    
+}
+
+.cardPrice {
+    font-size: large;
+    color: #8D8279;
+    font-weight: bold;
+}
+
+.cardDiscount {
+    font-size: large;
+    color: yellow;
+    font-weight: bold;
+}
+
+.cardStockContainer {
+    display: flex;
+    justify-content: end;
+    border-top: solid 3px;
+    border-color: #8D8279;
+    padding: 5px;
+}
