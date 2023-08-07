@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { read, utils } from 'xlsx'
 import axios from 'axios'
+import excelImage from '../assets/excel-example.png'
+import CreateFurniture from '../Components/CreateFurniture';
 
 function Admin() {
 
@@ -94,6 +96,12 @@ function Admin() {
         <button onClick={updateData}>Update data</button>
         <button onClick={deleteData}>Delete data</button>
         {loading ? <progress className='adminProgessBar'></progress> : ""}
+        <div>
+        <span>Example of the excel file to import</span>
+        <img src={excelImage} alt='excel example'></img>
+        </div>
+        <CreateFurniture></CreateFurniture>
+
     </div>
   )
 }
