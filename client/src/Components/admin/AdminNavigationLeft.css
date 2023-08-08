@@ -1,0 +1,9 @@
+.adminNavLeftListItems {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.adminNavLeftListItems:hover {
+    color: red;
+    cursor: pointer;
+}

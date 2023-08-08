@@ -9,6 +9,10 @@ import { Route} from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import AdminNavigationLeft from './Components/admin/AdminNavigationLeft';
+import Navbar from './Components/admin/Navbar';
+import BulkFurniture from './Components/admin/BulkFurniture';
+import CreateFurniture from './Components/admin/CreateFurniture';
 
 
 function App() {
@@ -43,7 +47,22 @@ function App() {
         </Route>
 
         <Route path='/admin'>
+          <div className='appAdminWrapper'>
+
+          <Navbar></Navbar>
+          <div className='appAdminContainer'>
+          <AdminNavigationLeft></AdminNavigationLeft>
+          <Route exact path='/admin'>
           <Admin></Admin>
+          </Route>
+          <Route exact path='/admin/createnew'>
+          <CreateFurniture></CreateFurniture>
+          </Route>
+          <Route exact path='/admin/uploadexcel'>
+          <BulkFurniture></BulkFurniture>
+          </Route>
+          </div>
+          </div>
         </Route>
     </div>
   );

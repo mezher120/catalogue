@@ -1,3 +1,57 @@
 .adminProgessBar {
     width: 100%;
 }
+
+.admin-table-container {
+    overflow-x: auto;
+}
+
+.admin-styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.admin-styled-table thead tr {
+    background-color: #8D8279;
+    color: #ffffff;
+    text-align: left;
+}
+
+.admin-styled-table th,
+.admin-styled-table td {
+    padding: 12px 15px;
+}
+
+.admin-styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+.admin-styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.admin-styled-table tbody tr:hover {
+    background-color: #8D8279;
+}
+
+.admin-styled-table tbody tr:nth-of-type(even):hover {
+    background-color: #8D8279;
+}
+
+
+.admin-styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.adminButtonAction:hover {
+    color: red;
+}
+
+.adminButtonActionEdit:hover {
+    color: blue;
+}

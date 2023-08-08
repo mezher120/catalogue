@@ -1,1 +1,10 @@
+.appAdminWrapper {
+    margin-left: -10%;
+    margin-right: -10%;
+}
 
+.appAdminContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}

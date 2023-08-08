@@ -31,6 +31,10 @@ const furnitureSchema = mongoose.Schema({
     unidades: {
         type: Number,
         default: 1
+    },
+    habilitado: {
+        type: Boolean,
+        default: true
     } 
 },
 {strict: false, timestamps: true}
