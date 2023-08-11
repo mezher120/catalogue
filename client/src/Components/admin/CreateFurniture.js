@@ -58,8 +58,8 @@ function CreateFurniture() {
     }
 
   return (
-    <div>
-      <form>
+    <div className='createFurnitureFormContainer'>
+      <form className='createForm'>
         <label>Product Code</label>
         <input type='text' name='codigo' onChange={(e) => handleOnChange(e)} required></input>
         <label>Name</label>
@@ -86,6 +86,8 @@ function CreateFurniture() {
         <input type='text' name='descripcion' onChange={(e) => handleOnChange(e)} required></input>
         <label>Units</label>
         <input type='number' name='unidades' onChange={(e) => handleOnChange(e)} required></input>
+        <label>Url</label>
+        <input type='text' name='url' onChange={(e) => handleOnChange(e)} required></input>
         <label>Image</label>
         <input type='file' name='imagen' onChange={(e) => handleOnFile(e)} required></input>
         <label>Outstanding</label>
@@ -93,7 +95,7 @@ function CreateFurniture() {
         <label>New</label>
         <input type='checkbox' name='nuevo' onChange={(e) => handleOnCheck(e)} required></input>
       </form>
-      <button onClick={addNewFurniture}>Add New Furniture</button>
+      <button className='createButton' onClick={addNewFurniture}>Add New Furniture</button>
       {validation ? <Alert onClose={() => setValidation(false)}>Codigo y Categoria son campos obligatorios</Alert> : <div/>}
     </div>
   )

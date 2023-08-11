@@ -7,14 +7,20 @@ import BulkFurniture from '../Components/admin/BulkFurniture';
 import './Admin.css'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
+import { useSelector } from 'react-redux';
+import Modal from '../Components/admin/Modal';
 
-const headers = ['codigo', 'nombre', 'categoria', 'descripcion', 'precio', 'stock', 'unidades', 'descuento', 'nuevo', 'destacado', 'habilitado']
-const body = [{codigo: '123456', nombre: 'silla tolix', categoria: 'SILLA', descripcion: '100x500', precio: 123456, stock: 5, unidades: 3, descuento: 50, nuevo: 'true', destacado: 'false', imagen: 'https://firebasestorage.googleapis.com/v0/b/incanto-pili.appspot.com/o/A-821B.jpg?alt=media&token=e3f96045-b704-4260-aab1-4f579f8d4ef1', habilitado: 'si'},
-{codigo: '123456', nombre: 'silla tolix', categoria: 'SILLA', descripcion: '100x500', precio: 123456, stock: 5, unidades: 3, descuento: 50, nuevo: 'true', destacado: 'false', imagen: 'https://firebasestorage.googleapis.com/v0/b/incanto-pili.appspot.com/o/A-821B.jpg?alt=media&token=e3f96045-b704-4260-aab1-4f579f8d4ef1', habilitado: 'no'}]
+const headers = ['codigo', 'nombre', 'categoria', 'descripcion', 'precio', 'stock', 'unidades', 'descuento', 'url', 'nuevo', 'destacado', 'habilitado']
+// const body = [{codigo: '123456', nombre: 'silla tolix', categoria: 'SILLA', descripcion: '100x500', precio: 123456, stock: 5, unidades: 3, descuento: 50, nuevo: 'true', destacado: 'false', imagen: 'https://firebasestorage.googleapis.com/v0/b/incanto-pili.appspot.com/o/A-821B.jpg?alt=media&token=e3f96045-b704-4260-aab1-4f579f8d4ef1', habilitado: 'si'},
+// {codigo: '123456', nombre: 'silla tolix', categoria: 'SILLA', descripcion: '100x500', precio: 123456, stock: 5, unidades: 3, descuento: 50, nuevo: 'true', destacado: 'false', imagen: 'https://firebasestorage.googleapis.com/v0/b/incanto-pili.appspot.com/o/A-821B.jpg?alt=media&token=e3f96045-b704-4260-aab1-4f579f8d4ef1', habilitado: 'no'}]
 
 function Admin() {
 
-    const [formActions, setformActions] = useState(false)
+    const body = useSelector((state) => state.furnitures)
+    // const headers = useSelector((state) => state.keys)
+    const [formActions, setformActions] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [id, setId] = useState('')
 
     function handleOnClickForm(e) {
       e.preventDefault();
@@ -24,6 +30,14 @@ function Admin() {
     function handleDeleteActionButton(e, item) {
       console.log(e.target.id, 'hancle')
       console.log(item, 'hola')
+    }
+
+    function handleUpdateActionButton(e, item) {
+      e.preventDefault();
+      console.log(e.target.id, 'here')
+      console.log(item, 'here1')
+      setId(e.target.id);
+      setOpenModal(!openModal)
     }
 
     return (
@@ -43,7 +57,7 @@ function Admin() {
               <tr key={index} id={item.codigo} onClick={(e) => handleOnClickForm(e)}>
                 {formActions && <td>
                   <DeleteForeverIcon id={item.codigo} onClick={(e) => handleDeleteActionButton(e)} className='adminButtonAction'></DeleteForeverIcon>
-                  <FormatAlignJustifyIcon className='adminButtonActionEdit'></FormatAlignJustifyIcon>
+                  <FormatAlignJustifyIcon id={item.codigo} className='adminButtonActionEdit' onClick={(e) => handleUpdateActionButton(e)} ></FormatAlignJustifyIcon>
                   </td>}
                 <td><img src={item.imagen} alt='not found' height={50}></img></td>
                 <td>{item.codigo}</td>
@@ -54,13 +68,15 @@ function Admin() {
                 <td>{item.stock}</td>
                 <td>{item.unidades}</td>
                 <td>{item.descuento}</td>
+                <td>{item.url}</td>     
                 <td>{item.nuevo}</td>
                 <td>{item.destacado}</td>
-                <td>{item.habilitado}</td>
+                <td>{item.habilitado ? 'ON' : 'OFF'}</td>
               </tr>      
             ))} 
           </tbody>
         </table>
+        {openModal && <Modal id={id} open={setOpenModal} ></Modal>}
 
     </div>
   )

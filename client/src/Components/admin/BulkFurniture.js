@@ -91,14 +91,16 @@ function BulkFurniture() {
     }
 
   return (
-    <div>
+    <div className='bulkContainer'>
         <form>
         <label>Insert your Excel</label>
         <input id='fileId' type='file' name='file' onChange={readUploadFile}></input>
-        </form>
+        </form> 
+        <div>
         <button onClick={uploadData}>Upload File</button>
         <button onClick={updateData}>Update data</button>
         <button onClick={deleteData}>Delete data</button>
+        </div>
         {loading ? <progress className='adminProgessBar'></progress> : ""}
         <div>
         <span>Example of the excel file to import</span>

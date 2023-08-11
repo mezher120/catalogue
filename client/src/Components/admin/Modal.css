@@ -1,0 +1,21 @@
+.modalContainer {
+    position: absolute;
+    top: 0;
+    background-color: white;
+}
+
+.modalTitle {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.modalClose {
+    cursor: pointer;
+
+}
+
+.modalClose:hover { 
+    background-color: rgb(95, 255, 255);
+    border-radius: 50%;
+}

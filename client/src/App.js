@@ -13,6 +13,7 @@ import AdminNavigationLeft from './Components/admin/AdminNavigationLeft';
 import Navbar from './Components/admin/Navbar';
 import BulkFurniture from './Components/admin/BulkFurniture';
 import CreateFurniture from './Components/admin/CreateFurniture';
+import OutStanding from './Components/admin/OutStanding';
 
 
 function App() {
@@ -60,6 +61,9 @@ function App() {
           </Route>
           <Route exact path='/admin/uploadexcel'>
           <BulkFurniture></BulkFurniture>
+          </Route>
+          <Route exact path='/admin/outstanding'>
+          <OutStanding></OutStanding>
           </Route>
           </div>
           </div>

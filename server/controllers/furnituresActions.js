@@ -1,4 +1,4 @@
-import furniture from "../models/furnituresModel.js"
+import furniture from "../models/furnituresModel.js";
 
 /* CRUD functions */
 
@@ -21,5 +21,15 @@ export const createFurniture = async (req, res) => {
         res.status(200).json(data);
 } catch (error) {
         res.status(400).json(error)
+    }
+}
+
+export const getOneFurniture = async (req, res) => {
+    const data = req.query
+    try {
+        let furnitureToUpdate = await furniture.findOne({codigo: data.id})
+        res.status(200).json(furnitureToUpdate)
+    } catch (error) {
+        res.status(400).json(error);
     }
 }

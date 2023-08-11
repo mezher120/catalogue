@@ -28,6 +28,10 @@ const furnitureSchema = mongoose.Schema({
         type: String,
         default: '...'
     },
+    url: {
+        type: String,
+        default: 'https://www.incanto.com.ar/'
+    },
     unidades: {
         type: Number,
         default: 1

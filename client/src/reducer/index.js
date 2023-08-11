@@ -1,6 +1,7 @@
 const initialState = {
     furnitures: [],
-    categories: []
+    categories: [],
+    keys: []
 }
 
 export default function rootReducer(state=initialState, action) {
@@ -9,7 +10,8 @@ export default function rootReducer(state=initialState, action) {
             return {
                 ...initialState,
                 furnitures: action.data,
-                categories: Array.from(new Set(action.data.map((item) => item.categoria)))
+                categories: Array.from(new Set(action.data.map((item) => item.categoria))),
+                keys: Object.keys(action.data[0])
             }
             
     
