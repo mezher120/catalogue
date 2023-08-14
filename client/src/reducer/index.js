@@ -1,7 +1,8 @@
 const initialState = {
     furnitures: [],
     categories: [],
-    keys: []
+    keys: [],
+    filtered: []
 }
 
 export default function rootReducer(state=initialState, action) {
@@ -10,8 +11,25 @@ export default function rootReducer(state=initialState, action) {
             return {
                 ...initialState,
                 furnitures: action.data,
+                filtered: action.data,
                 categories: Array.from(new Set(action.data.map((item) => item.categoria))),
                 keys: Object.keys(action.data[0])
+            }
+        case "DELETE_ONE":
+            return {
+                ...state,
+                furnitures: state.furnitures.filter(item => item.codigo !== action.data),
+                
+            }
+        case "UPDATE_ONE":
+            return {
+                ...state,
+                furnitures: state.furnitures.map(item => (item.codigo === action.payload.id) ? action.payload.data : item),
+            }
+        case "FILTER_BY_CATEGORY":
+            return {
+                ...state,
+                filtered: state.furnitures.filter(item => item.categoria === action.payload),
             }
             
     

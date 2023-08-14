@@ -2,10 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import './Modal.css';
 import CloseIcon from '@mui/icons-material/Close';
+import { useDispatch } from 'react-redux';
 
 function Modal({id, open}) {
 
-  const [data, setData] = useState();
+  const dispatch = useDispatch();
+  const [data, setData] = useState("");
   const categories = ['hola', 'chau']
   useEffect(() => {
     try {
@@ -21,19 +23,23 @@ function Modal({id, open}) {
   }, [id])
 
   function handleOnChange(e) {
-    console.log('hola')
+    setData({...data, [e.target.name]: e.target.value});
+    console.log(data)
   }
 
   function handleOnCheck(e) {
-    console.log('check')
+    setData({...data, [e.target.name]: e.target.checked})
+    console.log(data)
   }
 
   function handleOnFile(e) {
     console.log('file')
   }
 
-  function addNewFurniture() {
-    console.log('add')
+  async function updateFurniture() {
+    const res = await axios.put('http://localhost:3002/furniture/update', {id: id, data: data});
+    console.log(res.data)
+    dispatch({payload: {id, data}, type: 'UPDATE_ONE'})
   }
 
   return (
@@ -77,8 +83,8 @@ function Modal({id, open}) {
         <label>New</label>
         <input type='checkbox' name='nuevo' value={data?.nuevo} onChange={(e) => handleOnCheck(e)} required></input>
       </form>
-      <button className='createButton' onClick={addNewFurniture}>Add New Furniture</button>
-      <button className='createButton' onClick={addNewFurniture}>Cancel</button>
+      <button className='createButton' onClick={updateFurniture}>Update Furniture</button>
+      <button className='createButton' onClick={() => open(false)}>Cancel</button>
     </div>
   </div>
   )

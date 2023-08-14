@@ -27,16 +27,18 @@ function Header() {
         <div className='headerSocialsContainer'>
             <div className='headerSocials'>
             <ThemeProvider theme={theme}>
-            <PinterestIcon className='cursor: pointer' color='primary' fontSize='large'></PinterestIcon>
-            <InstagramIcon color='primary' fontSize='large'></InstagramIcon>
+            <PinterestIcon className='headerIcon' color='primary' fontSize='large'  ></PinterestIcon>
+            <InstagramIcon className='headerIcon' color='primary' fontSize='large' onClick={() => window.location.href = 'https://www.instagram.com/incantogroup/'} ></InstagramIcon>
             </ThemeProvider>
             <span className='headerInstagram'>@incantogroup</span>
             </div>
-            <div className='headerWhatsapp'>
+            <div className='headerWhatsapp headerIcon'>
+            <a className='headerWhatsapp headerIcon' target='_blank' href='https://wa.me/1130149572'>
             <ThemeProvider theme={theme}>
                 <WhatsAppIcon></WhatsAppIcon>
             </ThemeProvider>
                 <span>1130149572</span>
+            </a>
             </div>
         </div>
 

@@ -33,3 +33,28 @@ export const getOneFurniture = async (req, res) => {
         res.status(400).json(error);
     }
 }
+
+export const deleteOneFurniture = async (req, res) => {
+    const id = req.query.id;
+    try {
+        let furnitureDeleted = await furniture.deleteOne({codigo: id});
+        console.log('deleted', furnitureDeleted)
+        res.status(200).json(furnitureDeleted);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+}
+
+export const updateOneFurniture = async (req, res) => {
+    const {id, data} = req.body;
+    console.log(id)
+    console.log(data)
+    try {
+        let furnitureUpdated = await furniture.findOneAndUpdate({codigo: id}, data, {
+            new: true
+          });
+        res.status(200).json(furnitureUpdated);
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}

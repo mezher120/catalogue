@@ -8,6 +8,16 @@
     gap: 50px;
 }
 
+.headerIcon {
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+.headerIcon:hover {
+    color: rgb(206, 206, 206)
+}
+
 .headerCatalogo {
     color: white;
     font-size: 50px;
