@@ -14,11 +14,13 @@ import Navbar from './Components/admin/Navbar';
 import BulkFurniture from './Components/admin/BulkFurniture';
 import CreateFurniture from './Components/admin/CreateFurniture';
 import OutStanding from './Components/admin/OutStanding';
+import Login from './pages/Login';
 
 
 function App() {
 
   const dispatch = useDispatch();
+  const user = localStorage.getItem('user');
 
   useEffect(() => {
 
@@ -47,9 +49,14 @@ function App() {
 
         </Route>
 
+          {/* <Route exact path='/login'>
+          <Login></Login>
+          </Route> */}
+        
         <Route path='/admin'>
+          {!user ? <Login></Login> :
+          
           <div className='appAdminWrapper'>
-
           <Navbar></Navbar>
           <div className='appAdminContainer'>
           <AdminNavigationLeft></AdminNavigationLeft>
@@ -67,6 +74,7 @@ function App() {
           </Route>
           </div>
           </div>
+          }
         </Route>
     </div>
   );

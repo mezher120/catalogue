@@ -1,0 +1,18 @@
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid rgba(234, 234, 234, 0.74);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginInputs {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+}

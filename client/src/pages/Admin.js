@@ -7,9 +7,10 @@ import BulkFurniture from '../Components/admin/BulkFurniture';
 import './Admin.css'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../Components/admin/Modal';
 import ModalDelete from '../Components/admin/ModalDelete';
+import { Autocomplete, Pagination, Stack, TextField, Typography } from '@mui/material';
 
 const headers = ['codigo', 'nombre', 'categoria', 'descripcion', 'precio', 'stock', 'unidades', 'descuento', 'url', 'nuevo', 'destacado', 'habilitado']
 // const body = [{codigo: '123456', nombre: 'silla tolix', categoria: 'SILLA', descripcion: '100x500', precio: 123456, stock: 5, unidades: 3, descuento: 50, nuevo: 'true', destacado: 'false', imagen: 'https://firebasestorage.googleapis.com/v0/b/incanto-pili.appspot.com/o/A-821B.jpg?alt=media&token=e3f96045-b704-4260-aab1-4f579f8d4ef1', habilitado: 'si'},
@@ -17,10 +18,18 @@ const headers = ['codigo', 'nombre', 'categoria', 'descripcion', 'precio', 'stoc
 
 function Admin() {
   
+  const user = localStorage.getItem("user")  
 
-  const dataState = useSelector((state) => state.furnitures)
+  if (!user) {
+    window.location.href = '/login'
+  }
+  const dataState = useSelector((state) => state.filteredByName)
+  const names = dataState.map(item => item.nombre);
+  const dispatch = useDispatch();
   const [body, setBody] = useState([]);
 
+  console.log(dataState)
+  console.log(body)
   useEffect(() => {
     setBody(dataState)
   }, [dataState]);
@@ -30,6 +39,12 @@ function Admin() {
     const [openModal, setOpenModal] = useState(false);
     const [openModalDelete, setOpenModalDelete] = useState(false);
     const [id, setId] = useState('')
+    const [page, setPage] = useState(1);
+    const countPages = Math.floor(dataState.length / 10);
+    const furnituresPerPage = dataState.slice((page - 1)  * 10, page * 10);
+    function handleChange(event, value) {
+      setPage(value);
+    }
 
     function handleOnClickForm(e) {
       setformActions(!formActions);
@@ -49,8 +64,26 @@ function Admin() {
       setOpenModal(!openModal)
     }
 
+    function handleFilterByName(e) {
+      e.preventDefault();
+      console.log(e.target.value)
+      let nameInUppercase = e.target.value.toUpperCase();
+        dispatch({payload: nameInUppercase, type: "FILTER_BY_NAME"})
+    }
+
     return (
+    
     <div className='admin-table-container'>
+      <div className='adminAutocomplete'>
+      <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={names}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Filtrar por nombre"
+      onChange={(e) => handleFilterByName(e)} />}
+      />
+      </div>
         <table className="admin-styled-table">
           <thead>
           <tr>
@@ -62,7 +95,7 @@ function Admin() {
           </tr>
           </thead>
           <tbody>
-          {body && body.map((item, index) => (
+          {furnituresPerPage && furnituresPerPage.map((item, index) => (
               <tr key={index} onClick={() => handleOnClickForm()}>
                 {formActions && <td>
                   <DeleteForeverIcon id={item.codigo} onClick={(e) => handleDeleteActionButton(e)} className='adminButtonAction'></DeleteForeverIcon>
@@ -87,7 +120,10 @@ function Admin() {
         </table>
         {openModal && <Modal id={id} open={setOpenModal} ></Modal>}
         {openModalDelete && <ModalDelete id={id} open={setOpenModalDelete} body={body} setBody={setBody} ></ModalDelete>}
-
+        <Stack spacing={2}>
+        <Typography className='homePageNumber'>Page: {page}</Typography>
+        <Pagination count={countPages} page={page} onChange={handleChange} />
+        </Stack>
     </div>
   )
 }

@@ -2,7 +2,8 @@ const initialState = {
     furnitures: [],
     categories: [],
     keys: [],
-    filtered: []
+    filtered: [],
+    filteredByName: []
 }
 
 export default function rootReducer(state=initialState, action) {
@@ -12,6 +13,7 @@ export default function rootReducer(state=initialState, action) {
                 ...initialState,
                 furnitures: action.data,
                 filtered: action.data,
+                filteredByName: action.data,
                 categories: Array.from(new Set(action.data.map((item) => item.categoria))),
                 keys: Object.keys(action.data[0])
             }
@@ -30,6 +32,11 @@ export default function rootReducer(state=initialState, action) {
             return {
                 ...state,
                 filtered: state.furnitures.filter(item => item.categoria === action.payload),
+            }
+        case "FILTER_BY_NAME":
+            return {
+                ...state,
+                filteredByName: action.payload.length > 3 ? state.furnitures.filter(item => item.nombre.includes(action.payload)) : state.furnitures ,
             }
             
     

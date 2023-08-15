@@ -5,7 +5,10 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Navbar() {
 
-    const [login, setLogin] = useState(true)
+  function logOut(params) {
+    localStorage.clear();
+    window.location.reload();
+  }
 
   return (
     <div className='navBarContainer'>
@@ -16,15 +19,10 @@ function Navbar() {
           </div>
         </div>
         <div className='navBarLogInOut'>
-        {login ? 
-        <div className='navBarButtons'>
+        <div className='navBarButtons' onClick={() => logOut()}>
         <AccountCircleIcon></AccountCircleIcon>
         <span>Log out</span>
-        </div> : 
-        <div className='navBarButtons'>
-          <AccountCircleIcon></AccountCircleIcon>
-          <span>Log In</span>
-        </div> }
+        </div>
         </div>
     </div>
   )

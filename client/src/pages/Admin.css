@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.adminAutocomplete {
+    margin-top: 10px;
+}
+
 .admin-table-container {
     overflow-x: auto;
     position: relative;

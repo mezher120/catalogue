@@ -11,7 +11,7 @@ function Card({data}) {
         </div>
         <div className='cardImage'>
             {/* image */}
-            <img height={'300px'} src={data.imagen} alt='tolix'></img>
+            <img height={'280px'} src={data.imagen} alt='tolix'></img>
         </div>
         <div className='cardDescPriceContainer'>
             <div className='cardDescriptionContainer'>
@@ -27,7 +27,7 @@ function Card({data}) {
             </div>
             <div className='cardPriceContainer'>
                     {/* Precio */}
-                    <span className='cardPrice'>{data.precio}</span>
+                    <span className='cardPrice'>{data.precio.toLocaleString("en-US", {style:"currency", currency:"USD"})}</span>
                     {data.descuento ? <span className='cardDiscount'>{data.descuento}%</span> : ""}
             </div>
         </div>
