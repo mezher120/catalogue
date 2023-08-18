@@ -14,9 +14,6 @@ function ModalDelete({id, open, body, setBody}) {
             console.log(furnitureDeleted.data);
             open(false);
             dispatch({data: id, type: 'DELETE_ONE'})
-            // let newBody = body.filter(item => item.codigo !== id)
-            // setBody(newBody);
-            // window.location.reload();
         } catch (error) {
             console.log(error)
         }

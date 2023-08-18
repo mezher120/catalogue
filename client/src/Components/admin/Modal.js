@@ -37,9 +37,14 @@ function Modal({id, open}) {
   }
 
   async function updateFurniture() {
-    const res = await axios.put('http://localhost:3002/furniture/update', {id: id, data: data});
-    console.log(res.data)
-    dispatch({payload: {id, data}, type: 'UPDATE_ONE'})
+    try {
+      const res = await axios.put('http://localhost:3002/furniture/update', {id: id, data: data});
+      console.log(res.data)
+      open(false)
+      dispatch({payload: {id, data}, type: 'UPDATE_ONE'})
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

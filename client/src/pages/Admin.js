@@ -23,9 +23,8 @@ function Admin() {
   if (!user) {
     window.location.href = '/login'
   }
-  const dataState = useSelector((state) => state.filteredByName)
+  const dataState = useSelector((state) => state.furnitures)
   const names = dataState.map(item => item.nombre);
-  const dispatch = useDispatch();
   const [body, setBody] = useState([]);
 
   console.log(dataState)
@@ -41,7 +40,7 @@ function Admin() {
     const [id, setId] = useState('')
     const [page, setPage] = useState(1);
     const countPages = Math.floor(dataState.length / 10);
-    const furnituresPerPage = dataState.slice((page - 1)  * 10, page * 10);
+    const furnituresPerPage = body.slice((page - 1)  * 10, page * 10);
     function handleChange(event, value) {
       setPage(value);
     }
@@ -51,10 +50,10 @@ function Admin() {
     }
 
     function handleDeleteActionButton(e, item) {
-      console.log(e.target.id, 'hancle')
+      console.log(e.target.id, 'buttonDelete')
       console.log(item, 'hola')
-      setOpenModalDelete(!openModalDelete);
       setId(e.target.id);
+      setOpenModalDelete(!openModalDelete);
     }
 
     function handleUpdateActionButton(e, item) {
@@ -66,9 +65,13 @@ function Admin() {
 
     function handleFilterByName(e) {
       e.preventDefault();
-      console.log(e.target.value)
-      let nameInUppercase = e.target.value.toUpperCase();
-        dispatch({payload: nameInUppercase, type: "FILTER_BY_NAME"})
+      if (e.target.value.length > 2) {
+        let nameInUppercase = e.target.value.toUpperCase();
+        const filterByName = dataState.filter((item) => item.nombre.includes(nameInUppercase))
+        setBody(filterByName)
+      } else {
+        setBody(dataState)
+      }
     }
 
     return (
@@ -96,10 +99,10 @@ function Admin() {
           </thead>
           <tbody>
           {furnituresPerPage && furnituresPerPage.map((item, index) => (
-              <tr key={index} onClick={() => handleOnClickForm()}>
+              <tr key={index} onClick={() => handleOnClickForm()} className='adminDataTable'>
                 {formActions && <td>
-                  <DeleteForeverIcon id={item.codigo} onClick={(e) => handleDeleteActionButton(e)} className='adminButtonAction'></DeleteForeverIcon>
-                  <FormatAlignJustifyIcon id={item.codigo} className='adminButtonActionEdit' onClick={(e) => handleUpdateActionButton(e)} ></FormatAlignJustifyIcon>
+                  <button id={item.codigo} onClick={(e) => handleDeleteActionButton(e)} className='adminButtonAction'>X</button>
+                  <button id={item.codigo} onClick={(e) => handleUpdateActionButton(e)} className='adminButtonActionEdit'>Edit</button>
                   </td>}
                 <td><img src={item.imagen} alt='not found' height={50}></img></td>
                 <td>{item.codigo}</td>

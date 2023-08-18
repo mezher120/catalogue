@@ -54,10 +54,30 @@
     border-bottom: 2px solid #009879;
 }
 
+.adminDataTable td {
+    font-size: smaller;
+}
+
+.adminButtonAction {
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 5px;
+}
+
 .adminButtonAction:hover {
-    color: red;
+    color: darkred;
+    background-color: red;
+}
+
+.adminButtonActionEdit {
+    border: none;
+    border-radius: 10%;
+    cursor: pointer;
+    margin: 5px;
 }
 
 .adminButtonActionEdit:hover {
     color: blue;
+    background-color: rgba(70, 138, 255, 0.749);
 }

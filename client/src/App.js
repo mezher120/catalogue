@@ -28,6 +28,7 @@ function App() {
       try {
         const res = (await axios.get('http://localhost:3002/furniture')).data;
         dispatch({data: res, type: "GET_ALL"});
+        console.log("getAll")
       } catch (error) {
         console.log(error)
       }

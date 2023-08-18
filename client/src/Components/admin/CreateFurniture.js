@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './CreateFurniture.css'
 import { useSelector } from 'react-redux'
 import { app, storage } from '../../firebase'
-import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import { StringFormat, getDownloadURL, ref, uploadString } from 'firebase/storage';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
 
@@ -14,7 +14,11 @@ function CreateFurniture() {
 
     function handleOnChange(e) {
       e.preventDefault();
-      setData({...data, [e.target.name]: e.target.value })
+    if (e.target.name === 'nombre' ) {
+        setData({...data, [e.target.name]: e.target.value.toUpperCase()})
+      } else {
+        setData({...data, [e.target.name]: e.target.value })
+      }
     }
 
     function handleOnCheck(e) {
@@ -36,24 +40,30 @@ function CreateFurniture() {
     }
     
     async function addNewFurniture() {
-      if(!data.categoria || !data.codigo || data.categoria.length || data.codigo.length) {
+      if(!data.categoria || !data.codigo || data.categoria.length === 0 || data.codigo.length === 0) {
         setValidation(true)
         return; 
       }
-      
-      const imagesRef = ref(storage, data.codigo);  // ref to storage with the name of the file that will have
-      if (data.image) {
+      console.log('hasta imagen')
+      const newCode = data.codigo.split('/').join(''); // to delete / to store in firebase
+      const imagesRef = ref(storage, newCode);  // ref to storage with the name of the file that will have
+      if (data.imagen) {
         let downloadUrl = '';
         await uploadString(imagesRef, data.imagen, "data_url") // upload the file to the storage ref
         .then(async () => {
           downloadUrl = await getDownloadURL(imagesRef); // download the url of the imageRef 
-        })
+          console.log(downloadUrl, 'getdownloadurl')
+        })  
         const newData = {...data, imagen: downloadUrl}
         console.log(newData, 'here');
-        const addNewResult = await axios.post('http://localhost:3002/furniture', newData)
-        console.log(addNewResult);
-      
+        try {
+          const addNewResult = await axios.post('http://localhost:3002/furniture', newData)
+          console.log(addNewResult);
+        } catch (error) {
+          console.log(error)
+        }
       }
+      
 
     }
 
