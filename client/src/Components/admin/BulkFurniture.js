@@ -3,6 +3,7 @@ import { read, utils } from 'xlsx'
 import axios from 'axios'
 import excelImage from '../../assets/excel-example.png'
 import './BulkFurniture.css'
+import BulkImage from './BulkImage'
 
 function BulkFurniture() {
 
@@ -92,6 +93,7 @@ function BulkFurniture() {
 
   return (
     <div className='bulkContainer'>
+        <BulkImage></BulkImage>
         <form>
         <label>Insert your Excel</label>
         <input id='fileId' type='file' name='file' onChange={readUploadFile}></input>

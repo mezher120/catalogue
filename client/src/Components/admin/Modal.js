@@ -2,13 +2,16 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import './Modal.css';
 import CloseIcon from '@mui/icons-material/Close';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import { storage } from '../../firebase';
 
 function Modal({id, open}) {
 
   const dispatch = useDispatch();
   const [data, setData] = useState("");
-  const categories = ['hola', 'chau']
+  const [newCategory, setNewCategory] = useState('');
+  const categories = useSelector((state) => state.categories)
   useEffect(() => {
     try {
       async function fetchData() {
@@ -33,12 +36,39 @@ function Modal({id, open}) {
   }
 
   function handleOnFile(e) {
-    console.log('file')
+    console.log(e.target.files[0]);
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    reader.onload = (readerEvent) => {
+      setData({...data, [e.target.name]: readerEvent.target.result});
+    }
+  }
+
+  function handleOnNewCategory(e) {
+    e.preventDefault();
+    setNewCategory(e.target.value.toUpperCase());
   }
 
   async function updateFurniture() {
+    let newData = {...data};
+    if (data.imagen) {
+      const newCode = data.codigo.split('/').join('');
+      const imageRef = ref(storage, newCode);
+      let downloadUrl = '';
+      await uploadString(imageRef, data.imagen, 'data_url')
+      .then(async () => {
+        downloadUrl = await getDownloadURL(imageRef);
+      })
+      newData = {...newData, imagen: downloadUrl}
+    }
+    if (data.categoria === 'sin categoria') {
+      newData = {...newData, categoria: newCategory};
+    }
+    console.log(newData, 'antes de updatear')
     try {
-      const res = await axios.put('http://localhost:3002/furniture/update', {id: id, data: data});
+      const res = await axios.put('http://localhost:3002/furniture/update', {id: id, data: newData});
       console.log(res.data)
       open(false)
       dispatch({payload: {id, data}, type: 'UPDATE_ONE'})
@@ -65,15 +95,24 @@ function Modal({id, open}) {
         <input type='number' name='precio' value={data?.precio}  onChange={(e) => handleOnChange(e)} required></input>
         <label>Discount</label>
         <input type='number' name='descuento' value={data?.descuento} onChange={(e) => handleOnChange(e)} required></input>
-        <label>Category</label>
+        {data.categoria !== 'sin categoria' 
+        ?
+          <label>Category</label>
+          :
+          <label>New Category</label>
+        }
+        {data.categoria !== 'sin categoria' ?
         <input type='text' name='category' value={data?.categoria} onChange={(e) => handleOnChange(e)} required></input>
+        :
+        <input type='text' name='newCategory' value={newCategory} onChange={(e) => handleOnNewCategory(e)} required></input>
+        }
         <label>Change Category</label>
         <select name='categoria' onChange={(e) => handleOnChange(e)}>
           <option value='sin categoria'>Select Category</option>
           {categories && categories.map((item, index) => (
             <option key={index} value={item}>{item}</option>
           ))}
-          <option value='sin categoria'>Add new category...</option>
+          <option value='sin categoria' onChange={(e) => handleOnNewCategory(e)}>Add new category...</option>
         </select>
         <label>Description</label>
         <input type='text' name='descripcion' value={data?.descripcion} onChange={(e) => handleOnChange(e)} required></input>

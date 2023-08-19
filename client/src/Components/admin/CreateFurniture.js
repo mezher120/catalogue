@@ -8,6 +8,7 @@ import Alert from '@mui/material/Alert';
 
 function CreateFurniture() {
   const [data, setData] = useState({})
+  const [newCategory, setNewCategory] = useState('')
   const [validation, setValidation] = useState(false);
   const categories = useSelector((state) => state.categories)
   console.log(data)
@@ -19,6 +20,11 @@ function CreateFurniture() {
       } else {
         setData({...data, [e.target.name]: e.target.value })
       }
+    }
+
+    function handleChangeNewCategory(e) {
+      e.preventDefault();
+      setNewCategory(e.target.value.toUpperCase())
     }
 
     function handleOnCheck(e) {
@@ -54,7 +60,10 @@ function CreateFurniture() {
           downloadUrl = await getDownloadURL(imagesRef); // download the url of the imageRef 
           console.log(downloadUrl, 'getdownloadurl')
         })  
-        const newData = {...data, imagen: downloadUrl}
+        let newData = {...data, imagen: downloadUrl}
+        if (data.categoria === 'sin categoria') {
+          newData = {...newData, categoria: newCategory}; 
+        }
         console.log(newData, 'here');
         try {
           const addNewResult = await axios.post('http://localhost:3002/furniture', newData)
@@ -90,8 +99,8 @@ function CreateFurniture() {
         </select>
         <label>New Category</label>
         {data.categoria === 'sin categoria' 
-        ? <input type='text' name='categoria' onChange={(e) => handleOnChange(e)} required></input>
-        : <input type='text' name='categoria' onChange={(e) => handleOnChange(e)} required disabled></input>}
+        ? <input type='text' name='newCategory' onChange={(e) => handleChangeNewCategory(e)} required></input>
+        : <input type='text' name='newCategory' onChange={(e) => handleChangeNewCategory(e)} required disabled></input>}
         <label>Description</label>
         <input type='text' name='descripcion' onChange={(e) => handleOnChange(e)} required></input>
         <label>Units</label>

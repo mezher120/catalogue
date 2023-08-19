@@ -1,0 +1,7 @@
+.bulkImageProduct {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    padding: 5px;
+}
