@@ -18,7 +18,7 @@ export const createFurniture = async (req, res) => {
     const newFurniture = furniture(data) 
     try {
         await newFurniture.save();
-        res.status(200).json(data);
+        res.status(200).json({data: data, message: 'Furniture created'});
 } catch (error) {
         res.status(400).json(error)
     }

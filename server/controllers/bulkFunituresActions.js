@@ -2,9 +2,23 @@ import furniture from "../models/furnituresModel.js";
 
 
 export const furnitureBulkInsert = async (req, res) => {
-    const data = req.body;
+    const {excelRows, downloadImages} = req.body;
+    downloadImages.map((item) => console.log(item.nameUrl))
+    for (let i = 0; i < excelRows.length; i++) {
+       const newCodigo = excelRows[i].codigo.split('/').join('');
+       console.log(newCodigo)
+        for (let j = 0; j < downloadImages.length; j++) {
+            if (downloadImages[j].nameUrl.includes(newCodigo)) {
+                excelRows[i].imagen = downloadImages[j].url;
+                break;
+            }
+    
+        }
+        
+    }
+    console.log(excelRows);
     try {
-        await furniture.insertMany(data)
+        await furniture.insertMany(excelRows)
         .then( function () {
             res.status(200).json({success: true, message: 'furniture bulk insert successfully'})
         })   

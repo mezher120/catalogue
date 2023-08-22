@@ -5,6 +5,7 @@ import { app, storage } from '../../firebase'
 import { StringFormat, getDownloadURL, ref, uploadString } from 'firebase/storage';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
+import Swal from 'sweetalert2';
 
 function CreateFurniture() {
   const [data, setData] = useState({})
@@ -67,7 +68,13 @@ function CreateFurniture() {
         console.log(newData, 'here');
         try {
           const addNewResult = await axios.post('http://localhost:3002/furniture', newData)
-          console.log(addNewResult);
+          console.log(addNewResult.data);
+          Swal.fire({
+            title: 'Success!',
+            text: addNewResult.message,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          })
         } catch (error) {
           console.log(error)
         }

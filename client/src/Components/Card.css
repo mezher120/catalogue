@@ -8,6 +8,9 @@
     cursor: pointer;
     width: 350px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;;
 
 }
 
@@ -19,15 +22,33 @@
 
 .cardNewOne {
     position: absolute;
-    top: 30px;
-    right: 5px;
+    top: 20px;
+    right: 1px;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-color: yellow;
     border: 1px solid red;
-    padding: 5px;
+    padding: 4px;
     text-align: center;
+    font-size: smaller;
+    font-weight: bold;
+    color: red;
+}
+
+.cardOutstanding {
+    position: absolute;
+    border: solid 1px yellowgreen;
+    background-color: yellowgreen;
+    color: aliceblue;
+    height: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    bottom: 5px;
 }
 
 .cardTitle {
@@ -107,4 +128,16 @@
     border-top: solid 3px;
     border-color: #8D8279;
     padding: 5px;
+}
+
+.cardInStock {
+    color: rgb(0, 103, 0);
+}
+
+.cardLastStocks {
+    color: rgb(218, 181, 0);
+}
+
+.outOfStock {
+    color: rgb(222, 16, 16);
 }

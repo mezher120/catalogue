@@ -4,6 +4,9 @@ import axios from 'axios'
 import excelImage from '../../assets/excel-example.png'
 import './BulkFurniture.css'
 import BulkImage from './BulkImage'
+import { ref, listAll, getDownloadURL } from 'firebase/storage'
+import { storage } from '../../firebase'
+import Swal from 'sweetalert2'
 
 function BulkFurniture() {
 
@@ -11,6 +14,7 @@ function BulkFurniture() {
     const [excelRows, setExcelRows] = useState([]);
     const [selectedFile, setSelectedFile] = useState(null);
     const [rows, setRows] = useState([]);
+    const [downloadImages, setDownloadImages] = useState([]);
 
     useEffect(() => {
         fetchData();
@@ -54,8 +58,14 @@ function BulkFurniture() {
         e.preventDefault();
         if (excelRows) {
             try {
-                const res = await axios.post('http://localhost:3002/bulk', excelRows)
-                alert(res.data.message)
+                const res = await axios.post('http://localhost:3002/bulk', {excelRows, downloadImages})
+                // alert(res.data.message)
+                Swal.fire({
+                  title: 'Uploaded!',
+                  text: res.data.message,
+                  icon: 'success',
+                  confirmButtonText: 'Aceptar'
+                })
                 document.getElementById('fileId').value = '';
                 setExcelRows([])
             } catch (error) {
@@ -70,7 +80,13 @@ function BulkFurniture() {
         try {
           setLoading(true);
           const res = await axios.put('http://localhost:3002/bulk', excelRows);
-          alert(res.data.message)
+          // alert(res.data.message)
+          Swal.fire({
+            title: 'Updated!',
+            text: res.data.message,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          })
           setLoading(false);
           document.getElementById('fileId').value = '';
           setExcelRows([])
@@ -85,11 +101,42 @@ function BulkFurniture() {
       e.preventDefault();
       try {
         const res = await axios.delete('http://localhost:3002/bulk');
-        alert(res.data.message);
+        // alert(res.data.message);
+        Swal.fire({
+          title: 'Deleted!',
+          text: res.data.message,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        })
       } catch (error) {
         console.log(error)
       }
     }
+
+    const takeImagesFromFirebase = async (e) => {
+      e.preventDefault();
+      const imageRef = ref(storage);
+      let downloadUrls;
+      let downloadNames;
+      let downloadMix = [];
+      const dataImage = listAll(imageRef)
+      .then(async res => {
+        console.log(res)
+        const items = res.items;
+        downloadUrls = await Promise.all (items.map((item) => getDownloadURL(item)))
+        downloadNames = items.map((item) => item.name);
+        console.log(downloadNames)
+        console.log(downloadUrls)
+
+        for (let i = 0; i < downloadNames.length; i++) {
+            downloadMix[i] = {url: downloadUrls[i], nameUrl: downloadNames[i]}   
+        }
+        setDownloadImages(downloadMix);
+        console.log(downloadImages)
+      })
+      .catch( error => console.log(error, 'error'));
+      console.log(dataImage, 'dataiamge')
+    } 
 
   return (
     <div className='bulkContainer'>
@@ -102,6 +149,7 @@ function BulkFurniture() {
         <button onClick={uploadData}>Upload File</button>
         <button onClick={updateData}>Update data</button>
         <button onClick={deleteData}>Delete data</button>
+        <button onClick={takeImagesFromFirebase}>New button for images</button>
         </div>
         {loading ? <progress className='adminProgessBar'></progress> : ""}
         <div>

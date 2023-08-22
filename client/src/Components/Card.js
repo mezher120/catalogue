@@ -5,7 +5,8 @@ function Card({data}) {
 
   return (
     <div className='cardContainer'>
-        <div className='cardNewOne'>New One</div>
+        {data.nuevo && <div className='cardNewOne'>New One</div>}
+        {data.nuevo && <div className='cardOutstanding'>Destacado</div>}
         <div className='cardTitle'>
         <span>{data.nombre}</span>
         </div>
@@ -33,7 +34,8 @@ function Card({data}) {
         </div>
         <div className='cardStockContainer'>
             {/* Stock */}
-            <span>{data.stock > 10 ? 'EN STOCK' : data.stock > 0 && data.stock < 10 ? 'ULTIMOS EN STOCK' : 'SIN STOCK'}</span>
+
+            {data.stock > 10 ? <span className='cardInStock'>EN STOCK</span> : data.stock > 2  && data.stock < 10 ? <span className='cardLastStocks'>ULTIMOS EN STOCK</span> : <span className='outOfStock'>SIN STOCK</span>}
         </div>
     </div>
   )
