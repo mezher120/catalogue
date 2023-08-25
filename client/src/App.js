@@ -15,6 +15,7 @@ import BulkFurniture from './Components/admin/BulkFurniture';
 import CreateFurniture from './Components/admin/CreateFurniture';
 import OutStanding from './Components/admin/OutStanding';
 import Login from './pages/Login';
+import Cover from './Components/admin/Cover';
 
 
 function App() {
@@ -72,6 +73,9 @@ function App() {
           </Route>
           <Route exact path='/admin/outstanding'>
           <OutStanding></OutStanding>
+          </Route>
+          <Route exact path='/admin/cover'>
+            <Cover></Cover>
           </Route>
           </div>
           </div>

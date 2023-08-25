@@ -11,6 +11,7 @@ function Modal({id, open}) {
   const dispatch = useDispatch();
   const [data, setData] = useState("");
   const [newCategory, setNewCategory] = useState('');
+  const [newImage, setNewImage] = useState('');
   const categories = useSelector((state) => state.categories)
   useEffect(() => {
     try {
@@ -42,7 +43,7 @@ function Modal({id, open}) {
       reader.readAsDataURL(e.target.files[0]);
     }
     reader.onload = (readerEvent) => {
-      setData({...data, [e.target.name]: readerEvent.target.result});
+      setNewImage(readerEvent.target.result);
     }
   }
 
@@ -53,11 +54,11 @@ function Modal({id, open}) {
 
   async function updateFurniture() {
     let newData = {...data};
-    if (data.imagen) {
+    if (newImage) {
       const newCode = data.codigo.split('/').join('');
       const imageRef = ref(storage, newCode);
       let downloadUrl = '';
-      await uploadString(imageRef, data.imagen, 'data_url')
+      await uploadString(imageRef, newImage, 'data_url')
       .then(async () => {
         downloadUrl = await getDownloadURL(imageRef);
       })

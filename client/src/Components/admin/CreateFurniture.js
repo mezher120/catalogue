@@ -11,6 +11,7 @@ function CreateFurniture() {
   const [data, setData] = useState({})
   const [newCategory, setNewCategory] = useState('')
   const [validation, setValidation] = useState(false);
+  const [newImage, setNewImage] = useState('');
   const categories = useSelector((state) => state.categories)
   console.log(data)
 
@@ -41,7 +42,7 @@ function CreateFurniture() {
       console.log(reader)
       console.log(reader.onload)
       reader.onload = (readerEvent) => {  // to load after reading as data url
-        setData({...data, [e.target.name]: readerEvent.target.result});
+        setNewImage(readerEvent.target.result);
       }
 
     }
@@ -54,9 +55,9 @@ function CreateFurniture() {
       console.log('hasta imagen')
       const newCode = data.codigo.split('/').join(''); // to delete / to store in firebase
       const imagesRef = ref(storage, newCode);  // ref to storage with the name of the file that will have
-      if (data.imagen) {
+      if (newImage) {
         let downloadUrl = '';
-        await uploadString(imagesRef, data.imagen, "data_url") // upload the file to the storage ref
+        await uploadString(imagesRef, newImage, "data_url") // upload the file to the storage ref
         .then(async () => {
           downloadUrl = await getDownloadURL(imagesRef); // download the url of the imageRef 
           console.log(downloadUrl, 'getdownloadurl')
@@ -75,6 +76,20 @@ function CreateFurniture() {
             icon: 'success',
             confirmButtonText: 'Aceptar'
           })
+        } catch (error) {
+          console.log(error)
+        }
+      } else {
+        try {
+          const addNewResult = await axios.post('http://localhost:3002/furniture', data)
+          console.log(addNewResult.data);
+          Swal.fire({
+            title: 'Success!',
+            text: addNewResult.message,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          })
+          setData({});
         } catch (error) {
           console.log(error)
         }
@@ -116,10 +131,14 @@ function CreateFurniture() {
         <input type='text' name='url' onChange={(e) => handleOnChange(e)} required></input>
         <label>Image</label>
         <input type='file' name='imagen' onChange={(e) => handleOnFile(e)} required></input>
+        <div className='createCheckbox'>
         <label>Outstanding</label>
         <input type='checkbox' name='destacado' onChange={(e) => handleOnCheck(e)} required></input>
+        </div>
+        <div className='createCheckbox'>
         <label>New</label>
         <input type='checkbox' name='nuevo' onChange={(e) => handleOnCheck(e)} required></input>
+        </div>
       </form>
       <button className='createButton' onClick={addNewFurniture}>Add New Furniture</button>
       {validation ? <Alert onClose={() => setValidation(false)}>Codigo y Categoria son campos obligatorios</Alert> : <div/>}

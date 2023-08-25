@@ -16,6 +16,11 @@
     gap: 2px;
 }
 
+.createCheckbox {
+    display: flex;
+    justify-content: space-between;
+}
+
 .createButton {
     margin-top: 10px;
     
