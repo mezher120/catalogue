@@ -7,7 +7,7 @@ import Footer from './Components/Footer';
 import Admin from './pages/Admin';
 import { Route} from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import AdminNavigationLeft from './Components/admin/AdminNavigationLeft';
 import Navbar from './Components/admin/Navbar';
@@ -16,12 +16,14 @@ import CreateFurniture from './Components/admin/CreateFurniture';
 import OutStanding from './Components/admin/OutStanding';
 import Login from './pages/Login';
 import Cover from './Components/admin/Cover';
+import Theme from './Components/admin/Theme';
 
 
 function App() {
 
   const dispatch = useDispatch();
   const user = localStorage.getItem('user');
+  const color = useSelector(state => state.color);
 
   useEffect(() => {
 
@@ -37,10 +39,34 @@ function App() {
     getData();
   },[dispatch])
 
+  useEffect(() => {
+
+    async function getColor() {
+      try {
+        const res = (await axios.get('http://localhost:3002/colors')).data;
+        let colorDB = res[0].name;
+        console.log(res)
+        let color = document.querySelector(':root')
+          if (colorDB === 'gray') {
+            color.style.setProperty('--primary', '#8D8279'); 
+          } else if (colorDB === 'black') {
+            color.style.setProperty('--primary', 'black'); 
+          } else {
+            color.style.setProperty('--primary', 'rgb(220, 117, 62)'); 
+          }
+        dispatch({data: colorDB, type: "GET_COLOR"});
+        // console.log("getAll")
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getColor();
+  },[dispatch])
+
   return (
+
     <div>
         <Route exact path='/'>
-
 
           <Header></Header>
 
@@ -50,11 +76,7 @@ function App() {
           <Footer></Footer>
 
         </Route>
-
-          {/* <Route exact path='/login'>
-          <Login></Login>
-          </Route> */}
-        
+       
         <Route path='/admin'>
           {!user ? <Login></Login> :
           
@@ -76,6 +98,9 @@ function App() {
           </Route>
           <Route exact path='/admin/cover'>
             <Cover></Cover>
+          </Route>
+          <Route exact path='/admin/theme'>
+            <Theme></Theme>
           </Route>
           </div>
           </div>

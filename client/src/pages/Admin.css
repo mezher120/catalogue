@@ -81,3 +81,7 @@
     color: blue;
     background-color: rgba(70, 138, 255, 0.749);
 }
+
+.adminImg {
+    border-radius: 5px;
+}

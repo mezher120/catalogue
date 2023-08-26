@@ -6,6 +6,7 @@ import furniture from './routes/furnitureRoute.js'
 import furnitureBulk from './routes/furnitureBulkRoute.js'
 import outstandings from './routes/outstandingsRoute.js'
 import covers from './routes/coversRoute.js'
+import colors from './routes/colorsRoute.js'
 
 const app = express(); // create server 
 dotenv.config(); // method to use dotenv
@@ -19,6 +20,7 @@ app.use('/furniture', furniture)
 app.use('/bulk', furnitureBulk);
 app.use('/outstandings', outstandings);
 app.use('/covers', covers);
+app.use('/colors', colors);
 
 dbConnect(); // initiate DB 
 

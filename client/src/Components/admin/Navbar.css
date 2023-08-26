@@ -1,5 +1,5 @@
 .navBarContainer {
-    background-color: #8D8279;
+    background-color: var(--primary);
     display: flex;
     justify-content: space-between;
     padding: 10px;

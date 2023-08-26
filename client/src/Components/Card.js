@@ -28,7 +28,7 @@ function Card({data}) {
             </div>
             <div className='cardPriceContainer'>
                     {/* Precio */}
-                    <span className='cardPrice'>{data.precio.toLocaleString("en-US", {style:"currency", currency:"USD"})}</span>
+                    <span className='cardPrice'>{data.stock <= 2 ? '-' : data.precio.toLocaleString("en-US", {style:"currency", currency:"USD"})}</span>
                     {data.descuento ? <span className='cardDiscount'>{data.descuento}%</span> : ""}
             </div>
         </div>

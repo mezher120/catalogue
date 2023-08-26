@@ -4,6 +4,7 @@ const initialState = {
     keys: [],
     filtered: [],
     covers: [],
+    color: 'gray',
 }
 
 export default function rootReducer(state=initialState, action) {
@@ -25,13 +26,18 @@ export default function rootReducer(state=initialState, action) {
         case "UPDATE_ONE":
             return {
                 ...state,
-                furnitures: state.furnitures.map(item => (item.codigo === action.payload.id) ? action.payload.data : item),
+                furnitures: state.furnitures.map(item => (item.codigo === action.payload.id) ? action.payload.newData : item),
             }
         case "FILTER_BY_CATEGORY":
             return {
                 ...state,
                 filtered: state.furnitures.filter(item => item.categoria === action.payload),
             }   
+        case "GET_COLOR":
+            return {
+                ...state,
+                color: action.payload
+            }
     
         default:
             return state;

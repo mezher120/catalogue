@@ -61,18 +61,19 @@ function Modal({id, open}) {
       await uploadString(imageRef, newImage, 'data_url')
       .then(async () => {
         downloadUrl = await getDownloadURL(imageRef);
+        newData = {...newData, imagen: downloadUrl}
       })
-      newData = {...newData, imagen: downloadUrl}
     }
     if (data.categoria === 'sin categoria') {
       newData = {...newData, categoria: newCategory};
     }
     console.log(newData, 'antes de updatear')
     try {
+      console.log(newData)
       const res = await axios.put('http://localhost:3002/furniture/update', {id: id, data: newData});
       console.log(res.data)
       open(false)
-      dispatch({payload: {id, data}, type: 'UPDATE_ONE'})
+      dispatch({payload: {id, newData}, type: 'UPDATE_ONE'})
     } catch (error) {
       console.log(error)
     }

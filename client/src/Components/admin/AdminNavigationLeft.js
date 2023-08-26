@@ -5,6 +5,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import TocIcon from '@mui/icons-material/Toc';
 import AllOutIcon from '@mui/icons-material/AllOut';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 function AdminNavigationLeft() {
     
@@ -17,6 +18,8 @@ function AdminNavigationLeft() {
                 window.location.href = '/admin/outstanding'
             } else if (e.target.id === '4') {
                 window.location.href = '/admin/cover'
+            } else if (e.target.id === '5') {
+                window.location.href = '/admin/theme'
             } else {
                 window.location.href = '/admin/'
             }
@@ -29,8 +32,9 @@ function AdminNavigationLeft() {
             <li id='1' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <CloudUploadIcon></CloudUploadIcon> Upload / Update / Delete </li>
             <li id='2' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <AddCircleIcon></AddCircleIcon> Create a new one </li>
             <li id='3' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <AllOutIcon></AllOutIcon> Outstandings </li>  
-            <li id='4' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <TextSnippetIcon></TextSnippetIcon> Cover </li>  
-            <li id='5' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <TocIcon></TocIcon> Manage your DB </li>    
+            <li id='4' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <TextSnippetIcon></TextSnippetIcon> Cover </li> 
+            <li id='5' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <DarkModeIcon></DarkModeIcon> Theme </li>   
+            <li id='6' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <TocIcon></TocIcon> Manage your DB </li>    
         </ul>
     </div>
   )

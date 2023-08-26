@@ -1,0 +1,46 @@
+.themeContainer {
+    margin-left: 20px;
+    border: solid 1px rgba(233, 233, 233, 0.588);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    height: fit-content;
+    margin-top: 20px;
+}
+
+.themeColors {
+    display: flex;
+    gap: 10px;
+}
+
+.themeColor {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.gray {
+    background-color: #8D8279;
+
+}
+.black {
+    background-color: black;  
+}
+.brown {
+    background-color: rgb(220, 117, 62);
+}
+.yellow {
+    background-color: rgb(255, 203, 61);
+}
+.green {
+    background-color: rgb(76, 166, 98);
+}
+.red {
+    background-color: rgb(255, 87, 87);
+}
+
+.themeColor:hover {
+    border: 1px yellow solid;
+}

@@ -119,12 +119,14 @@
     font-size: large;
     color: #8D8279;
     font-weight: bold;
+    text-align: right;
 }
 
 .cardDiscount {
     font-size: large;
     color: rgb(255, 203, 61);
     font-weight: bold;
+    text-align: right;
 }
 
 .cardStockContainer {

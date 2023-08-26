@@ -39,7 +39,7 @@ function Admin() {
     const [openModalDelete, setOpenModalDelete] = useState(false);
     const [id, setId] = useState('')
     const [page, setPage] = useState(1);
-    const countPages = Math.ceil(dataState.length / 10);
+    let countPages = Math.ceil(dataState.length / 10);
     let furnituresPerPage = body.slice((page - 1)  * 10, page * 10);
 
     
@@ -69,7 +69,9 @@ function Admin() {
       e.preventDefault();
       if (e.target.value.length > 2) {
         let nameInUppercase = e.target.value.toUpperCase();
-        const filterByName = dataState.filter((item) => item.nombre.includes(nameInUppercase))
+        console.log(nameInUppercase)
+        const filterByName = body.filter((item) => item.nombre.includes(nameInUppercase))
+        setPage(1)
         setBody(filterByName)
       } else {
         setBody(dataState)
@@ -86,7 +88,7 @@ function Admin() {
       options={names}
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Filtrar por nombre"
-      onChange={(e) => handleFilterByName(e)} />}
+      onSelect={(e) => handleFilterByName(e)} />}
       />
       </div>
         <table className="admin-styled-table">
@@ -106,7 +108,7 @@ function Admin() {
                   <button id={item.codigo} onClick={(e) => handleDeleteActionButton(e)} className='adminButtonAction'>X</button>
                   <button id={item.codigo} onClick={(e) => handleUpdateActionButton(e)} className='adminButtonActionEdit'>Edit</button>
                   </td>}
-                <td><img src={item.imagen} alt='not found' height={50}></img></td>
+                <td><img className='adminImg' src={item.imagen} alt='not found' height={50}></img></td>
                 <td>{item.codigo}</td>
                 <td>{item.nombre}</td>
                 <td>{item.categoria}</td>

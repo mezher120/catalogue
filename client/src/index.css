@@ -1,3 +1,9 @@
+:root {
+  --primary: #8D8279;
+  --secondary: rgb(255, 203, 61);
+  --grayish: rgba(233, 233, 233, 0.588);
+}
+
 body {
   margin: 0;
   margin-left: 10%;
@@ -7,9 +13,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --primary: #8D8279;
-  --secondary: rgb(255, 203, 61);
-  --grayish: rgba(233, 233, 233, 0.588);
 }
 
 code {
