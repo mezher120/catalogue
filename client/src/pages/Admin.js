@@ -40,7 +40,9 @@ function Admin() {
     const [id, setId] = useState('')
     const [page, setPage] = useState(1);
     const countPages = Math.ceil(dataState.length / 10);
-    const furnituresPerPage = body.slice((page - 1)  * 10, page * 10);
+    let furnituresPerPage = body.slice((page - 1)  * 10, page * 10);
+
+    
     function handleChange(event, value) {
       setPage(value);
     }

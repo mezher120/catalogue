@@ -32,7 +32,7 @@ function Carrousel() {
   return (
     <AutoPlaySwipeableViews interval={5000}>
       {imagesforSlider && imagesforSlider.map((image) => (
-        <div id='s  lider'className='carouselContainer'>
+        <div key={image._id} className='carouselContainer'>
           <img src={image.src} className='carrouselImage' alt='carousel images'/>
         </div>
       ))}

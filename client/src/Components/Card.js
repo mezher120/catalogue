@@ -12,7 +12,7 @@ function Card({data}) {
         </div>
         <div className='cardImage'>
             {/* image */}
-            <img height={'280px'} src={data.imagen} alt='tolix'></img>
+            <img height={'280px'} className='cardimg' src={data.imagen} alt='tolix'></img>
         </div>
         <div className='cardDescPriceContainer'>
             <div className='cardDescriptionContainer'>

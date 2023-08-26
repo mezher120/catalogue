@@ -3,6 +3,7 @@ const initialState = {
     categories: [],
     keys: [],
     filtered: [],
+    covers: [],
 }
 
 export default function rootReducer(state=initialState, action) {
@@ -30,7 +31,7 @@ export default function rootReducer(state=initialState, action) {
             return {
                 ...state,
                 filtered: state.furnitures.filter(item => item.categoria === action.payload),
-            }          
+            }   
     
         default:
             return state;

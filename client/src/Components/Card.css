@@ -27,13 +27,13 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-color: yellow;
-    border: 1px solid red;
+    background-color: var(--secondary);
+    border: 1px solid var(--primary);
     padding: 4px;
     text-align: center;
     font-size: smaller;
     font-weight: bold;
-    color: red;
+    color: var(--primary);
 }
 
 .cardOutstanding {
@@ -66,6 +66,11 @@
 .cardImage {
     display: flex;
     justify-content: center;
+}
+
+.cardimg {
+    object-fit: cover;
+    max-width: 100%;
 }
 
 .cardSubtitle {

@@ -1,5 +1,52 @@
-.coverContainer {
+.coverWrapper {
+    margin-left: 40px;
+    width: 50%;
+}
+
+.coverTitleMediasContainer {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    border: solid 1px rgba(233, 233, 233, 0.588);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 100%;
+}
+
+.coverTitlesMedias {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.coverMediasContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+     gap: 5px;
+}
+
+.coverMediasIndividuals {
+
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    width: fit-content;
+}
+
+.coverBtn {
+    border-radius: 7px;
+    border: 1px solid rgba(233, 233, 233, 0.588);
+    height: 30px;
+    width: fit-content;
+    align-self: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.coverBtn:hover {
+    background-color: aquamarine;
 }

@@ -19,7 +19,7 @@ function Home() {
     <div>
     <div className='homeContainer'>
       {furnituresPerPage && furnituresPerPage.map((furniture) => (
-        <Card data={furniture}></Card>
+        <Card key={furniture._id} data={furniture}></Card>
         
       ))}
     </div>

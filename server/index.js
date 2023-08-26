@@ -5,6 +5,7 @@ import dotenv from 'dotenv'; // to use external environment for passwords
 import furniture from './routes/furnitureRoute.js'
 import furnitureBulk from './routes/furnitureBulkRoute.js'
 import outstandings from './routes/outstandingsRoute.js'
+import covers from './routes/coversRoute.js'
 
 const app = express(); // create server 
 dotenv.config(); // method to use dotenv
@@ -17,6 +18,7 @@ app.use(cors());
 app.use('/furniture', furniture)
 app.use('/bulk', furnitureBulk);
 app.use('/outstandings', outstandings);
+app.use('/covers', covers);
 
 dbConnect(); // initiate DB 
 
