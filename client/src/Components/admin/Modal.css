@@ -1,6 +1,6 @@
 .modalContainerUpdate {
     position: absolute;
-    top: 0;
+    top: 10%;
     background-color: white;
     z-index: 2;
 }

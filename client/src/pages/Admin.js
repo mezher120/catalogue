@@ -123,10 +123,10 @@ function Admin() {
                 <td>{item.habilitado ? 'ON' : 'OFF'}</td>
               </tr>      
             ))} 
+            {openModal && <Modal id={id} open={setOpenModal} ></Modal>}
+            {openModalDelete && <ModalDelete id={id} open={setOpenModalDelete} body={body} setBody={setBody} ></ModalDelete>}
           </tbody>
         </table>
-        {openModal && <Modal id={id} open={setOpenModal} ></Modal>}
-        {openModalDelete && <ModalDelete id={id} open={setOpenModalDelete} body={body} setBody={setBody} ></ModalDelete>}
         <Stack spacing={2}>
         <Typography className='homePageNumber'>Page: {page}</Typography>
         <Pagination count={countPages} page={page} onChange={handleChange} />
