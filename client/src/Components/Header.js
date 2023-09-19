@@ -5,6 +5,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import logo from '../assets/logoWhite.png'
 
 const theme = createTheme({
     palette: {
@@ -40,8 +41,9 @@ function Header() {
         }
         
         <div className='headerIncantoGroup'>
-        <span className='headerIncanto'>{data?.enterprise ? data.enterprise : 'Company'}</span>
-        <span className='headerGroup'>{data?.subtitle ? data.subtitle : 'GROUP'}</span>
+        {/* <span className='headerIncanto'>{data?.enterprise ? data.enterprise : 'Company'}</span>
+        <span className='headerGroup'>{data?.subtitle ? data.subtitle : 'GROUP'}</span> */}
+        <img className='headerLogo' src={logo} alt='Logo Company'></img>
         </div>
 
         <div className='headerSocialsContainer'>
@@ -50,7 +52,7 @@ function Header() {
             {data?.facebook && <PinterestIcon className='headerIcon' color='primary' fontSize='large' onClick={() => window.location.href = data?.facebookUrl} ></PinterestIcon>}
             {data?.instagram && <InstagramIcon className='headerIcon' color='primary' fontSize='large' onClick={() => goToUrl()} ></InstagramIcon>}
             </ThemeProvider>
-            <span className='headerInstagram'>@{data?.instagramUrl}</span>
+            <span className='headerInstagram' onClick={() => goToUrl()}>@{data?.instagramUrl}</span>
             </div>
             <div className='headerWhatsapp headerIcon'>
             <a className='headerWhatsapp headerIcon' target='_blank' href={`https://wa.me/${data?.whatsAppUrl}`}>

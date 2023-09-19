@@ -1,18 +1,22 @@
 import React from 'react';
 import './Card.css';
+import noImage from '../assets/noImage.jpg';
 
 function Card({data}) {
-
+    console.log(data.imagen.length)
+    console.log(data.imagen)
+    console.log(data.codigo)
   return (
     <div className='cardContainer'>
-        {data.nuevo && <div className='cardNewOne'>New One</div>}
+        {data.nuevo && <div className='cardNewOne'><span>NUEVO INGRESO</span></div>}
         {data.nuevo && <div className='cardOutstanding'>Destacado</div>}
         <div className='cardTitle'>
         <span>{data.nombre}</span>
         </div>
         <div className='cardImage'>
             {/* image */}
-            <img height={'280px'} className='cardimg' src={data.imagen} alt='tolix'></img>
+
+            <img height={'280px'} className='cardimg' src={data.imagen.length < 18 ? noImage : data.imagen} alt="no Image"></img>
         </div>
         <div className='cardDescPriceContainer'>
             <div className='cardDescriptionContainer'>

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import './Cover.css'
+import Swal from 'sweetalert2'
 
 function Cover() {
 
@@ -24,6 +25,11 @@ function Cover() {
       console.log(data)
       const res = await axios.post('http://localhost:3002/covers', data);
       console.log(res.data)
+      Swal.fire({
+        title: 'Success!',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      })
       // dispatch({type: 'MODIFY_COVERS', payload: data})
     } catch (error) {
       console.log(error)

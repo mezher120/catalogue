@@ -7,6 +7,10 @@ import BulkImage from './BulkImage'
 import { ref, listAll, getDownloadURL } from 'firebase/storage'
 import { storage } from '../../firebase'
 import Swal from 'sweetalert2'
+import LooksOneIcon from '@mui/icons-material/LooksOne';
+import LooksTwoIcon from '@mui/icons-material/LooksTwo';
+import Looks3Icon from '@mui/icons-material/Looks3';
+import DnsIcon from '@mui/icons-material/Dns';
 
 function BulkFurniture() {
 
@@ -50,6 +54,7 @@ function BulkFurniture() {
               };
             reader.readAsArrayBuffer(file);
             }
+
         }
     console.log(rows, 'rows')
     console.log(excelRows, 'exccelrows')
@@ -73,6 +78,29 @@ function BulkFurniture() {
             }
         }
     };
+
+    const updateAndUploadData = async (e) => {
+      e.preventDefault();
+      if (excelRows) {
+        try {
+          setLoading(true);
+          const res = await axios.put('http://localhost:3002/bulk/updateupload', excelRows);
+          // alert(res.data.message)
+          Swal.fire({
+            title: 'Updated!',
+            text: res.data.message,
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          })
+          setLoading(false);
+          document.getElementById('fileId').value = '';
+          setExcelRows([])
+        } catch (error) {
+          setLoading(false);
+          console.log(error)
+        }
+      }
+    }
 
     const updateData = async (e) => {
       e.preventDefault();
@@ -133,6 +161,11 @@ function BulkFurniture() {
         }
         setDownloadImages(downloadMix);
         console.log(downloadImages)
+        Swal.fire({
+          title: 'Success!',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        })
       })
       .catch( error => console.log(error, 'error'));
       console.log(dataImage, 'dataiamge')
@@ -140,22 +173,34 @@ function BulkFurniture() {
 
   return (
     <div className='bulkContainer'>
+      <div className='bulkFirstPartWrapper'>
+        <h3><LooksOneIcon></LooksOneIcon> Upload Images with the name of the code in each file. (If you have to write / character, don't write it, for example AB1/D = AB1D)</h3>
         <BulkImage></BulkImage>
+      </div>
+      <div className='bulkFirstPartWrapper'>
+        <h3><DnsIcon></DnsIcon> Take uploaded Images and the upload Excel File like the example. </h3>
+        <div className='bulkUploadingBtn'>
+        <LooksOneIcon></LooksOneIcon>
+        <button onClick={takeImagesFromFirebase}>Take uploaded images</button>
+        </div>
+
         <form>
-        <label>Insert your Excel</label>
+        <label> <LooksTwoIcon></LooksTwoIcon> Insert your Excel</label>
         <input id='fileId' type='file' name='file' onChange={readUploadFile}></input>
         </form> 
-        <div>
+        <div className='bulkUploadingBtn'>
+        <Looks3Icon></Looks3Icon>
         <button onClick={uploadData}>Upload File</button>
-        <button onClick={updateData}>Update data</button>
+        <button onClick={updateAndUploadData}>Update data and Upload new</button>
+        <button onClick={updateData}>Update data </button>
         <button onClick={deleteData}>Delete data</button>
-        <button onClick={takeImagesFromFirebase}>New button for images</button>
         </div>
         {loading ? <progress className='adminProgessBar'></progress> : ""}
         <div>
-        <span>Example of the excel file to import</span>
+        <span>Example of the excel file to import. <strong>Product Code</strong> is the only attribute that is <strong>required</strong>, the others you will be able to fill it later if you want</span>
         <img src={excelImage} alt='excel example'></img>
         </div>
+      </div>
     </div>
   )
 }

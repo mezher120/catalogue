@@ -20,7 +20,15 @@ function Carrousel() {
       }
     }
     fetchData();
+
+    return () => {
+      
+      setImagesforSlider([]);
+
+    }
+
   },[]);  
+  console.log(imagesforSlider)
 
 
   // const imagesforSlider = [

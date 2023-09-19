@@ -1,3 +1,9 @@
+.navigationWrapper {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
 .navigationContainer {
     background-color: white;
     display: flex;
@@ -8,6 +14,7 @@
     padding-top: 10px;
     border-bottom: 1px solid #8D8279;
     margin-bottom: 10px;
+
 }
 
 .hover-underline-animation {
@@ -16,6 +23,7 @@
     color: #8D8279;
     cursor: pointer;
     font-size: small;
+    font-weight: 600;
   }
   
   .hover-underline-animation:after {

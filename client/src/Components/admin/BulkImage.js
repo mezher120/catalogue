@@ -3,10 +3,12 @@ import React, { useState } from 'react'
 import { storage } from '../../firebase';
 import './BulkImage.css'
 import Swal from 'sweetalert2';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function BulkImage() {
 
     const [imagesToUpload, setImagesToUpload] = useState([]);
+    const [waiting, setWaiting] = useState(false);
     
     // uploading images directly with name file
     async function handleOnChangeFile(e) {  
@@ -31,7 +33,9 @@ function BulkImage() {
 
     async function uploadFileToStorage() {
         try {
+            setWaiting(true);
             const images = await Promise.all(imagesToUpload)
+            setWaiting(false);
             Swal.fire({
                 title: 'Imagenes Cargadas!',
                 text: '...',
@@ -76,6 +80,7 @@ function BulkImage() {
         ))}
         </div> */}
         <button onClick={() => uploadFileToStorage()}>Upload Images</button>
+        {waiting && <CircularProgress></CircularProgress>}
     </div>
   )
 }

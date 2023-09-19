@@ -81,7 +81,7 @@ function Modal({id, open}) {
 
   return (
     <div>
-      <div className='createFurnitureFormContainer modalContainer'>
+      <div className='createFurnitureFormContainer modalContainerUpdate'>
         <div className='modalTitle'>
         <h1>Update your product - {id}</h1>
         <CloseIcon className='modalClose' onClick={() => open(false)}></CloseIcon>

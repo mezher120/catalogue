@@ -4,6 +4,7 @@ const initialState = {
     keys: [],
     filtered: [],
     covers: [],
+    categorySelected: "",
     color: 'gray',
 }
 
@@ -32,6 +33,7 @@ export default function rootReducer(state=initialState, action) {
             return {
                 ...state,
                 filtered: state.furnitures.filter(item => item.categoria === action.payload),
+                categorySelected: action.payload
             }   
         case "GET_COLOR":
             return {

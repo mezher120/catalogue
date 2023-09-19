@@ -1,7 +1,8 @@
-.modalContainer {
+.modalContainerUpdate {
     position: absolute;
     top: 0;
     background-color: white;
+    z-index: 2;
 }
 
 .modalTitle {

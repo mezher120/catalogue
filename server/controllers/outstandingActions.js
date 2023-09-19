@@ -12,6 +12,7 @@ export const getAll = async (req, res) => {
 export const postAll = async (req, res) => {
     const data = req.body;
     try {
+        await OutStanding.deleteMany();
         await OutStanding.insertMany(data)
         .then( function () {
             res.status(200).json({success: true, message: 'outstandings insert successfully'})

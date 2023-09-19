@@ -1,7 +1,23 @@
+.footerWrapper {
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+    width: 80%;
+    background-color: white;
+}
+
 .footerContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     border-top: solid 1px gray;
     padding-top: 10px;
+
+}
+
+.footerAlign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }

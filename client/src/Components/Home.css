@@ -5,12 +5,25 @@
     gap: 10px;
 }
 
+.homeTitleContainer {
+    border-bottom: 4px solid var(--primary); /* 1px orange left border */
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+.homeTitle {
+    color: var(--primary);
+    font-size: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
 .homePagination {
     margin: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 40px;
 }
 
 .homePageNumber {

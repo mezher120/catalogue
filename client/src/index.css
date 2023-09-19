@@ -1,21 +1,20 @@
 :root {
   --primary: #8D8279;
-  --secondary: rgb(255, 203, 61);
+  --secondary: #F6B325;
   --grayish: rgba(233, 233, 233, 0.588);
+}
+
+@font-face {
+  font-family: 'myriadPro';
+  src: url('./fonts/MyriadPro-Regular.otf') format('otf'); 
 }
 
 body {
   margin: 0;
   margin-left: 10%;
   margin-right: 10%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }

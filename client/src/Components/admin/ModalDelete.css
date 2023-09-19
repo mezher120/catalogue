@@ -1,7 +1,9 @@
 .modalContainer {
     position: absolute;
-    top: 0;
+    top: 30%;
+    right: 50%;
     background-color: white;
+    z-index: 2;
 }
 
 .modalTitle {

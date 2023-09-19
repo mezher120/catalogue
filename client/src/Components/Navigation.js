@@ -21,6 +21,7 @@ function Navigation() {
   }
 
   return (
+    <div className='navigationWrapper'>
     <div className='navigationContainer'>
         
         {elementsToSell && elementsToSell.map((element, index) => (
@@ -28,6 +29,7 @@ function Navigation() {
                 <span key={index} className='hover-underline-animation' id={index} onClick={(e) => handleFilter(e)} >{element}</span>
             // {/* </div> */}
         ))}
+    </div>
     </div>
   )
 }

@@ -1,8 +1,8 @@
 .cardContainer {
-    border-top: 7px solid #8D8279;     /* 3px red top border */
-    border-right: 1px solid #8D8279; /* 5px blue dashed right border */
-    border-bottom: 7px solid #8D8279; /* 2px green dotted bottom border */
-    border-left: 1px solid #8D8279; /* 1px orange left border */
+    border-top: 7px solid #9D9BA0;     /* 3px red top border */
+    border-right: 1px solid #9D9BA0; /* 5px blue dashed right border */
+    border-bottom: 7px solid #9D9BA0; /* 2px green dotted bottom border */
+    border-left: 1px solid #9D9BA0; /* 1px orange left border */
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
@@ -25,16 +25,19 @@
     top: 20px;
     right: 1px;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color: var(--secondary);
-    border: 1px solid var(--primary);
-    padding: 4px;
+    padding: 25px;
     text-align: center;
     font-size: smaller;
-    font-weight: bold;
-    color: var(--primary);
+    font-weight: 600;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .cardOutstanding {
     position: absolute;
@@ -52,15 +55,16 @@
 }
 
 .cardTitle {
-    color: #8D8279;
+    color: var(--primary);
     border-bottom: solid 3px;
-    border-color: #8D8279;
-    padding-bottom: 5px;
+    border-color: #9D9BA0;
+    padding-bottom: 5px;  
 }
 
 .cardTitle span {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .cardImage {
@@ -74,14 +78,14 @@
 }
 
 .cardSubtitle {
-    color: rgb(255, 203, 61);
+    color: var(--secondary);
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .cardBorder {
     border-bottom: solid 3px;
-    border-color: #8D8279;
+    border-color: #9D9BA0;
     margin-right: 10px;
 }
 
@@ -102,8 +106,8 @@
 }
 
 .cardDescription span {
-    font-size: large;
-    color: #8D8279;
+    font-size: medium;
+    color: #A2ABBA;
 }
 
 .cardPriceContainer {
@@ -117,16 +121,21 @@
 
 .cardPrice {
     font-size: large;
-    color: #8D8279;
+    color: #9A9BA0;
     font-weight: bold;
     text-align: right;
 }
 
 .cardDiscount {
     font-size: large;
-    color: rgb(255, 203, 61);
+    color: white;
+    background-color: var(--secondary);
     font-weight: bold;
-    text-align: right;
+    align-self: flex-end;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
 }
 
 .cardStockContainer {
@@ -135,16 +144,20 @@
     border-top: solid 3px;
     border-color: #8D8279;
     padding: 5px;
+    font-weight: bold;
 }
 
 .cardInStock {
-    color: rgb(0, 103, 0);
+    /* color: rgb(0, 103, 0); */
+    color: var(--secondary);
 }
 
 .cardLastStocks {
-    color: rgb(218, 181, 0);
+    /* color: rgb(218, 181, 0); */
+    color: var(--secondary);
 }
 
 .outOfStock {
-    color: rgb(222, 16, 16);
+    /* color: rgb(222, 16, 16); */
+    color: var(--secondary);
 }

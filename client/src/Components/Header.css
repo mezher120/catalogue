@@ -22,6 +22,9 @@
     color: white;
     font-size: 50px;
     text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 100;
+    letter-spacing: 2px;
 }
 
 .headerIncantoGroup {
@@ -36,6 +39,12 @@
     font-size: 50px;
     font-weight: bold;
     color: white;
+}
+
+.headerLogo {
+    width: 80%;
+    height: auto;
+    align-self: center;
 }
 
 .headerGroup {
@@ -61,6 +70,11 @@
 
 .headerInstagram {
     align-self: flex-end;
+    cursor: pointer;
+}
+
+.headerInstagram:hover {
+    color: rgb(206, 206, 206)
 }
 
 .headerWhatsapp {

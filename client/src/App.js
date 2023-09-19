@@ -24,6 +24,7 @@ function App() {
   const dispatch = useDispatch();
   const user = localStorage.getItem('user');
   const color = useSelector(state => state.color);
+  const category = useSelector(state => state.categorySelected);
 
   useEffect(() => {
 
@@ -63,6 +64,7 @@ function App() {
     getColor();
   },[dispatch])
 
+
   return (
 
     <div>
@@ -71,12 +73,14 @@ function App() {
           <Header></Header>
 
           <Navigation></Navigation>
-          <Carrousel></Carrousel>
-          <Home></Home>
+          {!category && <Carrousel></Carrousel>}
+          <Home category={category}></Home>
           <Footer></Footer>
 
         </Route>
        
+
+
         <Route path='/admin'>
           {!user ? <Login></Login> :
           
