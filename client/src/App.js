@@ -18,8 +18,10 @@ import Login from './pages/Login';
 import Cover from './Components/admin/Cover';
 import Theme from './Components/admin/Theme';
 
+export const url = 'https://incanto-7856d597903f.herokuapp.com';
 
 function App() {
+
 
   const dispatch = useDispatch();
   const user = localStorage.getItem('user');
@@ -30,7 +32,7 @@ function App() {
 
     async function getData() {
       try {
-        const res = (await axios.get('http://localhost:3002/furniture')).data;
+        const res = (await axios.get(`${url}/furniture`)).data;
         dispatch({data: res, type: "GET_ALL"});
         console.log("getAll")
       } catch (error) {
@@ -44,7 +46,7 @@ function App() {
 
     async function getColor() {
       try {
-        const res = (await axios.get('http://localhost:3002/colors')).data;
+        const res = (await axios.get(`${url}/colors`)).data;
         let colorDB = res[0].name;
         console.log(res)
         let color = document.querySelector(':root')

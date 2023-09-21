@@ -3,6 +3,7 @@ import { storage } from '../../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import {url} from '../../App.js';
 
 const promises = [];
 
@@ -41,7 +42,7 @@ function OutStanding() {
         let downloadUrl = await getDownloadURL(imagesRef);    
         dataUrl[i] = {src: downloadUrl};  
       }
-      const res = await axios.post('http://localhost:3002/outstandings', dataUrl);
+      const res = await axios.post(`${url}/outstandings`, dataUrl);
       console.log(res);      
   } catch (error) {
       console.log(error)

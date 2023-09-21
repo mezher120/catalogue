@@ -11,6 +11,7 @@ import LooksOneIcon from '@mui/icons-material/LooksOne';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import Looks3Icon from '@mui/icons-material/Looks3';
 import DnsIcon from '@mui/icons-material/Dns';
+import {url} from '../../App.js';
 
 function BulkFurniture() {
 
@@ -27,7 +28,7 @@ function BulkFurniture() {
       const fetchData = async () => {
         try {
           setLoading(true);
-          const result = (await axios.get("http://localhost:3002/furniture"))
+          const result = (await axios.get(`${url}/furniture`))
             .data;
           setRows(result);
           setLoading(false);
@@ -63,7 +64,7 @@ function BulkFurniture() {
         e.preventDefault();
         if (excelRows) {
             try {
-                const res = await axios.post('http://localhost:3002/bulk', {excelRows, downloadImages})
+                const res = await axios.post(`${url}/bulk`, {excelRows, downloadImages})
                 // alert(res.data.message)
                 Swal.fire({
                   title: 'Uploaded!',
@@ -84,7 +85,7 @@ function BulkFurniture() {
       if (excelRows) {
         try {
           setLoading(true);
-          const res = await axios.put('http://localhost:3002/bulk/updateupload', excelRows);
+          const res = await axios.put(`${url}/bulk/updateupload`, excelRows);
           // alert(res.data.message)
           Swal.fire({
             title: 'Updated!',
@@ -107,7 +108,7 @@ function BulkFurniture() {
       if (excelRows) {
         try {
           setLoading(true);
-          const res = await axios.put('http://localhost:3002/bulk', excelRows);
+          const res = await axios.put(`${url}/bulk`, excelRows);
           // alert(res.data.message)
           Swal.fire({
             title: 'Updated!',
@@ -128,7 +129,7 @@ function BulkFurniture() {
     const deleteData = async (e) => {
       e.preventDefault();
       try {
-        const res = await axios.delete('http://localhost:3002/bulk');
+        const res = await axios.delete(`${url}/bulk`);
         // alert(res.data.message);
         Swal.fire({
           title: 'Deleted!',

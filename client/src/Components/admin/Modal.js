@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { storage } from '../../firebase';
+import {url} from '../../App.js';
 
 function Modal({id, open}) {
 
@@ -16,7 +17,7 @@ function Modal({id, open}) {
   useEffect(() => {
     try {
       async function fetchData() {
-        const res = await axios.get(`http://localhost:3002/furniture/getone?id=${id}`)
+        const res = await axios.get(`${url}/furniture/getone?id=${id}`)
         console.log(res.data)
         setData(res.data)     
       }
@@ -70,7 +71,7 @@ function Modal({id, open}) {
     console.log(newData, 'antes de updatear')
     try {
       console.log(newData)
-      const res = await axios.put('http://localhost:3002/furniture/update', {id: id, data: newData});
+      const res = await axios.put(`${url}/furniture/update`, {id: id, data: newData});
       console.log(res.data)
       open(false)
       dispatch({payload: {id, newData}, type: 'UPDATE_ONE'})

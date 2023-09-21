@@ -3,6 +3,7 @@ import './ModalDelete.css'
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
+import {url} from '../../App.js';
 
 function ModalDelete({id, open, body, setBody}) {
 
@@ -10,7 +11,7 @@ function ModalDelete({id, open, body, setBody}) {
 
     async function handleDeleteFurniture() {
         try {
-            const furnitureDeleted = await axios.delete(`http://localhost:3002/furniture/delete?id=${id}`);
+            const furnitureDeleted = await axios.delete(`${url}/furniture/delete?id=${id}`);
             console.log(furnitureDeleted.data);
             open(false);
             dispatch({data: id, type: 'DELETE_ONE'})

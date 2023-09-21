@@ -3,9 +3,7 @@ import './Card.css';
 import noImage from '../assets/noImage.jpg';
 
 function Card({data}) {
-    console.log(data.imagen.length)
-    console.log(data.imagen)
-    console.log(data.codigo)
+
   return (
     <div className='cardContainer'>
         {data.nuevo && <div className='cardNewOne'><span>NUEVO INGRESO</span></div>}

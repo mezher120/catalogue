@@ -6,6 +6,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import logo from '../assets/logoWhite.png'
+import {url} from '../App';
 
 const theme = createTheme({
     palette: {
@@ -22,7 +23,10 @@ function Header() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get('http://localhost:3002/covers');
+      console.log(url);
+      const res = await axios.get(`${url}/covers`);
+
+      console.log(res, 'headers')
       setData(res.data[0])
     }
     fetchData();

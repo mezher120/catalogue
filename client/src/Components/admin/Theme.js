@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Theme.css'
 import axios from 'axios'
 import Swal from 'sweetalert2';
+import {url} from '../../App.js';
 
 function Theme() {
 
@@ -11,7 +12,7 @@ function Theme() {
         const data = {name: e.target.id};
         console.log(typeof data)
         try {
-            const res = await axios.post('http://localhost:3002/colors', data);
+            const res = await axios.post(`${url}/colors`, data);
             console.log(res);
             Swal.fire({
                 title: 'Color Changed!',

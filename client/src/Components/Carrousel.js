@@ -3,6 +3,7 @@ import './Carrousel.css'
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import axios from 'axios';
+import {url} from '../App.js';
 
 
 function Carrousel() {
@@ -12,7 +13,7 @@ function Carrousel() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('http://localhost:3002/outstandings');
+        const res = await axios.get(`${url}/outstandings`);
         console.log(res);
         setImagesforSlider(res.data);
       } catch (error) {
