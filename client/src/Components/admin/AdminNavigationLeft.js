@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './AdminNavigationLeft.css'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -8,7 +8,8 @@ import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 function AdminNavigationLeft() {
-    
+
+  
         function goTo(e) {
             if (e.target.id === '1') {
                 window.location.href = '/admin/uploadexcel'
@@ -29,12 +30,12 @@ function AdminNavigationLeft() {
 
     <div>
         <ul className='adminNavLeftListContainer'>
-            <li id='1' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <CloudUploadIcon></CloudUploadIcon> Upload / Update / Delete </li>
-            <li id='2' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <AddCircleIcon></AddCircleIcon> Create a new one </li>
-            <li id='3' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <AllOutIcon></AllOutIcon> Outstandings </li>  
-            <li id='4' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <TextSnippetIcon></TextSnippetIcon> Cover </li> 
-            <li id='5' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <DarkModeIcon></DarkModeIcon> Theme </li>   
-            <li id='6' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <TocIcon></TocIcon> Manage your DB </li>    
+            <li id='1' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <CloudUploadIcon></CloudUploadIcon>Upload / Update / Delete</li>
+            <li id='2' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <AddCircleIcon></AddCircleIcon>Create a new one</li>
+            <li id='3' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <AllOutIcon></AllOutIcon>Outstandings</li>  
+            <li id='4' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <TextSnippetIcon></TextSnippetIcon>Cover</li> 
+            <li id='5' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <DarkModeIcon></DarkModeIcon>Theme</li>   
+            <li id='6' className='adminNavLeftListItems' onClick={(e) => goTo(e)}> <TocIcon></TocIcon>Manage your DB</li>    
         </ul>
     </div>
   )

@@ -3,6 +3,14 @@
     width: 50%;
 }
 
+@media screen and (max-width: 600px) {
+    .coverWrapper {
+        overflow-x: auto;
+        margin-left: 0px;
+        gap: 10px
+    }
+  }
+
 .coverTitleMediasContainer {
     display: flex;
     gap: 10px;
