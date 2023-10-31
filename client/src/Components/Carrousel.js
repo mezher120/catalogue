@@ -4,6 +4,7 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import axios from 'axios';
 import {url} from '../App.js';
+import { Skeleton } from '@mui/material';
 
 
 function Carrousel() {
@@ -39,13 +40,18 @@ function Carrousel() {
   // ]
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
   return (
-    <AutoPlaySwipeableViews interval={5000}>
-      {imagesforSlider && imagesforSlider.map((image) => (
-        <div key={image._id} className='carouselContainer'>
-          <img src={image.src} className='carrouselImage' alt='carousel images'/>
-        </div>
-      ))}
-  </AutoPlaySwipeableViews>
+    <div>
+      {imagesforSlider ? 
+        <AutoPlaySwipeableViews interval={5000}>
+          {imagesforSlider && imagesforSlider.map((image) => (
+            <div key={image._id} className='carouselContainer'>
+              <img src={image.src} className='carrouselImage' alt='carousel images'/>
+            </div>
+          ))}
+        </AutoPlaySwipeableViews>
+      : <Skeleton variant="rounded" width="100%" height={160}  />
+      }
+    </div>
   )
 }
 
